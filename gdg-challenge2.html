@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Your Name — Product Designer</title>
+<meta name="description" content="Portfolio of Your Name: UI/UX design, product thinking and community work.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+/* ===== Design tokens: edit these to re-brand ===== */
+:root{--bg:#faf7f2;--surface:#fff;--ink:#14161c;--muted:#5c6070;--line:#e6e1d8;--accent:#ff5a36;--accent-ink:#fff;--tint:#fff0ea;--r:16px;--shadow:0 10px 30px rgba(20,22,28,.08)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1115;--surface:#171a21;--ink:#f2f0ea;--muted:#9a9eae;--line:#2a2e38;--tint:#2a1a15;--shadow:0 10px 30px rgba(0,0,0,.5)}}
+:root[data-theme="dark"]{--bg:#0f1115;--surface:#171a21;--ink:#f2f0ea;--muted:#9a9eae;--line:#2a2e38;--tint:#2a1a15;--shadow:0 10px 30px rgba(0,0,0,.5)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+h1,h2,h3{font-family:"Space Grotesk",Inter,sans-serif;line-height:1.1;margin:0}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+section{padding:72px 0}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+h2{font-size:clamp(28px,4vw,40px);margin-bottom:28px}
+/* nav */
+nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
+.brand{font:700 20px "Space Grotesk",sans-serif;text-decoration:none}.brand span{color:var(--accent)}
+.links{display:flex;gap:6px;align-items:center}
+.links a,.links button{font:inherit;font-size:14px;font-weight:500;text-decoration:none;padding:8px 12px;border-radius:999px;border:0;background:none;color:var(--ink);cursor:pointer;transition:.15s}
+.links a:hover,.links button:hover{background:var(--tint);color:var(--accent)}
+/* hero */
+.hero{padding:88px 0 56px}
+.hero h1{font-size:clamp(38px,7vw,76px);max-width:15ch;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero p{max-width:54ch;color:var(--muted);font-size:18px;margin:22px 0 30px}
+.btns{display:flex;gap:12px;flex-wrap:wrap}
+.btn{font:inherit;font-weight:600;text-decoration:none;padding:13px 24px;border-radius:999px;border:2px solid var(--ink);cursor:pointer;transition:.15s;display:inline-block}
+.btn.p{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.p:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(255,90,54,.35)}
+.btn.g{background:none;color:var(--ink)}.btn.g:hover{background:var(--ink);color:var(--bg)}
+.stats{display:flex;gap:36px;flex-wrap:wrap;margin-top:48px;padding-top:28px;border-top:1px solid var(--line)}
+.stats b{display:block;font:700 30px "Space Grotesk",sans-serif}.stats span{font-size:14px;color:var(--muted)}
+/* work */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px}
+.chip{font:inherit;font-size:14px;font-weight:500;padding:7px 16px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;transition:.15s}
+.chip:hover{border-color:var(--accent)}.chip[aria-pressed=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.cards{display:grid;gap:22px;grid-template-columns:repeat(auto-fill,minmax(310px,1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;cursor:pointer;text-align:left;font:inherit;color:inherit;padding:0;transition:.2s;display:flex;flex-direction:column}
+.card:hover,.card:focus-visible{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--accent);outline:none}
+.thumb{height:190px;display:grid;place-items:center;font:700 56px "Space Grotesk",sans-serif;color:#fff}
+.card .body{padding:18px 20px 22px}
+.card h3{font-size:21px;margin:6px 0}.card p{margin:0;color:var(--muted);font-size:15px}
+.meta{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.more{display:inline-block;margin-top:14px;font-weight:600;font-size:14px}
+.card:hover .more{color:var(--accent)}
+/* skills */
+.skills{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.skill{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+.skill h3{font-size:18px;margin-bottom:12px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}.tags span{font-size:13px;padding:4px 12px;border-radius:999px;background:var(--tint);color:var(--ink)}
+/* about / contact */
+.about{display:grid;gap:36px;grid-template-columns:1fr 1.4fr;align-items:center}
+.photo{aspect-ratio:1;border-radius:28px;background:linear-gradient(135deg,var(--accent),#ffb199);display:grid;place-items:center;font:700 80px "Space Grotesk",sans-serif;color:#fff}
+.about p{color:var(--muted);font-size:17px}
+.contact{background:var(--ink);color:var(--bg);border-radius:28px;padding:56px 32px;text-align:center}
+.contact h2{margin-bottom:12px}.contact p{opacity:.8;margin:0 0 26px}
+.contact .btn.p{border-color:var(--accent)}
+footer{padding:28px 0 40px;color:var(--muted);font-size:14px;text-align:center}
+/* case study */
+#case{display:none;padding:48px 0 80px}
+body.case #home{display:none}body.case #case{display:block}
+.back{font:inherit;font-weight:600;background:none;border:0;color:var(--accent);cursor:pointer;padding:0;margin-bottom:24px;font-size:15px}
+.cover{height:300px;border-radius:24px;display:grid;place-items:center;font:700 90px "Space Grotesk",sans-serif;color:#fff;margin:22px 0 32px}
+#case h1{font-size:clamp(32px,5vw,56px)}
+.facts{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));margin:24px 0 36px}
+.facts div{border-top:2px solid var(--ink);padding-top:8px;font-size:14px;color:var(--muted)}.facts b{display:block;color:var(--ink);font-size:16px}
+.cs h3{font-size:24px;margin:30px 0 8px}.cs p{max-width:68ch;color:var(--muted);font-size:17px;margin:0}
+@media (max-width:720px){.about{grid-template-columns:1fr}.photo{max-width:220px}.links a.h{display:none}section{padding:52px 0}.hero{padding-top:56px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<nav><div class="wrap">
+<a class="brand" href="#top" data-home>Your<span>Name</span></a>
+<div class="links"><a class="h" href="#work" data-home>Work</a><a class="h" href="#skills" data-home>Skills</a><a class="h" href="#about" data-home>About</a><a href="#contact" data-home>Contact</a><button id="theme" aria-label="Toggle dark mode">◐</button></div>
+</div></nav>
+
+<main id="home">
+<header class="hero" id="top"><div class="wrap">
+<div class="eyebrow">Product &amp; UI/UX Designer</div>
+<h1>I design simple things people <em>love to use.</em></h1>
+<p>Hi, I’m Your Name. I turn messy problems into clear, friendly interfaces, from research and wireframes to polished prototypes and handoff.</p>
+<div class="btns"><a class="btn p" href="#work">See my work</a><a class="btn g" href="#contact">Hire me</a></div>
+<div class="stats"><div><b>12+</b><span>Projects shipped</span></div><div><b>3</b><span>Years designing</span></div><div><b>5</b><span>Communities led</span></div></div>
+</div></header>
+
+<section id="work"><div class="wrap">
+<div class="eyebrow">Selected work</div><h2>Projects I’m proud of</h2>
+<div class="filters" id="filters"></div>
+<div class="cards" id="cards"></div>
+</div></section>
+
+<section id="skills"><div class="wrap">
+<div class="eyebrow">Toolkit</div><h2>What I bring to your team</h2>
+<div class="skills">
+<div class="skill"><h3>Research &amp; UX</h3><div class="tags"><span>User interviews</span><span>Journey maps</span><span>Wireframing</span><span>Usability tests</span></div></div>
+<div class="skill"><h3>Visual &amp; UI</h3><div class="tags"><span>Design systems</span><span>Typography</span><span>Color</span><span>Motion</span></div></div>
+<div class="skill"><h3>Tools</h3><div class="tags"><span>Figma</span><span>FigJam</span><span>HTML/CSS</span><span>Notion</span></div></div>
+<div class="skill"><h3>Collaboration</h3><div class="tags"><span>Dev handoff</span><span>Workshops</span><span>Public speaking</span><span>Mentoring</span></div></div>
+</div>
+</div></section>
+
+<section id="about"><div class="wrap about">
+<div class="photo" aria-label="Your photo goes here">YN</div>
+<div><div class="eyebrow">About me</div><h2>Design with empathy, built to ship.</h2>
+<p>I started in graphic design and fell in love with products that solve real problems. Today I lead design workshops in my local developer community, and I care about accessible, honest interfaces.</p>
+<p style="margin-top:12px">Outside of work: sketching, photography and exploring new cities.</p></div>
+</div></section>
+
+<section id="contact"><div class="wrap"><div class="contact">
+<h2>Let’s build something good.</h2><p>Open to internships, full-time roles and freelance projects.</p>
+<a class="btn p" href="mailto:you@example.com">you@example.com</a>
+</div></div></section>
+<footer>© 2026 Your Name · Designed &amp; built by hand</footer>
+</main>
+
+<article id="case"><div class="wrap cs">
+<button class="back" id="back">← Back to all projects</button>
+<div class="meta" id="c-cat"></div><h1 id="c-title"></h1>
+<div class="cover" id="c-cover"></div>
+<div class="facts" id="c-facts"></div>
+<div id="c-body"></div>
+</div></article>
+
+<script>
+/* ===== Edit your projects here ===== */
+var P=[
+{id:"gdg-login",cat:"UI Design",title:"GDG Login Experience",sum:"A welcoming, trustworthy sign-in flow with dark mode.",color:"#4285F4",role:"UI/UX Designer",time:"1 week",tools:"Figma",
+ story:[["The problem","New members were dropping off at sign-in. The screen felt cold and had no clear path for forgotten passwords."],["My approach","I mapped the happy path and three alternate paths, sketched a wireframe, then built a UI using the four brand colors with generous spacing."],["The result","A simple, friendly screen with inline validation, light and dark themes and a mobile layout."]]},
+{id:"learn-app",cat:"Mobile App",title:"Study Buddy App",sum:"A mobile app that helps students plan study sessions together.",color:"#ff5a36",role:"Product Designer",time:"6 weeks",tools:"Figma, FigJam",
+ story:[["The problem","Students struggle to coordinate group study across schedules and chat apps."],["My approach","I ran 8 interviews, defined one core job to be done, and tested a clickable prototype with 12 students."],["The result","Testers booked a session in under 40 seconds and rated the flow 4.6/5."]]},
+{id:"brand-kit",cat:"Branding",title:"Community Brand Kit",sum:"Logo, color and type system for a student tech community.",color:"#1f9d6b",role:"Brand Designer",time:"3 weeks",tools:"Illustrator, Figma",
+ story:[["The problem","The community had five different logos and no consistent look across posters and social media."],["My approach","I audited existing assets, defined brand values, and built a compact system with templates anyone could reuse."],["The result","One recognizable identity used across events, slides and socials."]]},
+{id:"shop-site",cat:"Web Design",title:"Local Shop Website",sum:"A fast, mobile-first storefront for a small business.",color:"#7c5cff",role:"Web Designer",time:"2 weeks",tools:"Figma, HTML/CSS",
+ story:[["The problem","Customers could not find opening hours or products on the old site, especially on phones."],["My approach","I simplified the navigation to four items, put hours and location at the top and designed large touch targets."],["The result","A lighter site that answers the top three customer questions in one screen."]]}
+];
+var $=function(i){return document.getElementById(i)};
+var cats=["All"].concat(P.map(function(p){return p.cat}).filter(function(c,i,a){return a.indexOf(c)===i}));
+var cur="All";
+function renderFilters(){$("filters").innerHTML=cats.map(function(c){return '<button class="chip" aria-pressed="'+(c===cur)+'" data-c="'+c+'">'+c+'</button>'}).join("")}
+function renderCards(){$("cards").innerHTML=P.filter(function(p){return cur==="All"||p.cat===cur}).map(function(p){
+return '<button class="card" data-id="'+p.id+'"><div class="thumb" style="background:'+p.color+'">'+p.title.charAt(0)+'</div><div class="body"><div class="meta">'+p.cat+'</div><h3>'+p.title+'</h3><p>'+p.sum+'</p><span class="more">Read case study →</span></div></button>'}).join("")}
+$("filters").onclick=function(e){var c=e.target.dataset.c;if(!c)return;cur=c;renderFilters();renderCards()};
+$("cards").onclick=function(e){var b=e.target.closest(".card");if(b)location.hash="case-"+b.dataset.id};
+$("back").onclick=function(){location.hash="work"};
+function route(){
+var h=location.hash.slice(1),p=h.indexOf("case-")===0&&P.filter(function(x){return "case-"+x.id===h})[0];
+if(p){document.body.classList.add("case");$("c-cat").textContent=p.cat;$("c-title").textContent=p.title;
+$("c-cover").style.background=p.color;$("c-cover").textContent=p.title.charAt(0);
+$("c-facts").innerHTML=[["Role",p.role],["Timeline",p.time],["Tools",p.tools]].map(function(f){return '<div>'+f[0]+'<b>'+f[1]+'</b></div>'}).join("");
+$("c-body").innerHTML=p.story.map(function(s){return '<h3>'+s[0]+'</h3><p>'+s[1]+'</p>'}).join("");
+document.title=p.title+" — Your Name";window.scrollTo(0,0)}
+else{var was=document.body.classList.contains("case");document.body.classList.remove("case");document.title="Your Name — Product Designer";
+if(was){var t=h&&document.getElementById(h);setTimeout(function(){(t||$("work")).scrollIntoView()},0)}}}
+window.addEventListener("hashchange",route);
+document.querySelectorAll("[data-home]").forEach(function(a){a.addEventListener("click",function(){if(document.body.classList.contains("case"))document.body.classList.remove("case")})});
+var dark=matchMedia("(prefers-color-scheme: dark)").matches;
+function th(){document.documentElement.setAttribute("data-theme",dark?"dark":"light")}
+th();$("theme").onclick=function(){dark=!dark;th()};
+renderFilters();renderCards();route();
+</script>
+</body>
+</html>
